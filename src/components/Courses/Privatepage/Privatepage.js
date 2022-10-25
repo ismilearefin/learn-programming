@@ -6,6 +6,7 @@ const Privatepage = () => {
     const {name,thum_img,card_dis} = mainData;
     return (
         <div className='h-screen grid items-center'>
+            
             <div className="card lg:card-side bg-base-100 shadow-xl ">
         <figure><img src={thum_img} alt="Album"/></figure>
         <div className="card-body">
