@@ -1,4 +1,5 @@
 import React from 'react';
+import { FaArrowRight } from "react-icons/fa";
 
 const Home = () => {
     return (
@@ -8,7 +9,7 @@ const Home = () => {
             <div className="max-w-md">
             <h1 className="mb-5 text-5xl font-bold">Learn Programing with us</h1>
             <p className="mb-5">Programming languages are the reason every online service that we use today exists. Their number is very large, so you might ask yourself: which programming languages are the most worth learning and sought-after by the companies in 2022?</p>
-            <button className="btn btn-primary">Get Started</button>
+            <button className="btn btn-primary gap-2">Our Courses <FaArrowRight></FaArrowRight></button>
             </div>
         </div>
         </div>
