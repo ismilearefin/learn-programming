@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { FaGoogle,FaGithub } from "react-icons/fa";
 
 const Login = () => {
     return (
@@ -26,9 +27,14 @@ const Login = () => {
                     <p  className="label-text-alt">create a new account? <Link to='/signup' className="label-text-alt link link-hover">Sign-up</Link></p>
                 </label>
                 </div>
-                <div className="form-control mt-6">
+                <div className="form-control mt-4">
                 <button className="btn btn-primary">Login</button>
+                <div className='flex justify-center gap-3 mt-3'>
+                <FaGoogle className='text-2xl'></FaGoogle>
+                <FaGithub className='text-2xl'></FaGithub>
                 </div>
+                </div>
+                
             </div>
             </div>
         </div>

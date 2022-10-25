@@ -20,6 +20,12 @@ const Signup = () => {
                 </div>
                 <div className="form-control">
                 <label className="label">
+                    <span className="label-text">Profile picture</span>
+                </label>
+                <input type="text" placeholder="URL" className="input input-bordered" />
+                </div>
+                <div className="form-control">
+                <label className="label">
                     <span className="label-text">Email</span>
                 </label>
                 <input type="email" placeholder="email" className="input input-bordered" />
