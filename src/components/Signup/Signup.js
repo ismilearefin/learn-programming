@@ -14,9 +14,9 @@ const Signup = () => {
             <div className="card-body">
                 <div className="form-control">
                 <label className="label">
-                    <span className="label-text">User Name</span>
+                    <span className="label-text">Full Name</span>
                 </label>
-                <input type="text" placeholder="user name" className="input input-bordered" />
+                <input type="text" placeholder="Full name" className="input input-bordered" />
                 </div>
                 <div className="form-control">
                 <label className="label">

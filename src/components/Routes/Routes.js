@@ -20,14 +20,17 @@ export  const router = createBrowserRouter([
         },
         {
           path : '/courses',
+          loader:()=> fetch('https://my-assignment-server.vercel.app/allcourse'),
           element : <Courses></Courses>,
           children:[
             {
               path:'/courses',
+              loader:()=> fetch('https://my-assignment-server.vercel.app/allcourse'),
               element:<ShowCourses></ShowCourses>
             },
             {
-              path:'/courses/premium',
+              path:'/courses/:id',
+              loader: ({params}) => fetch(`https://my-assignment-server.vercel.app/course/${params}`),
               element:<Premium></Premium>
             }
           ]
