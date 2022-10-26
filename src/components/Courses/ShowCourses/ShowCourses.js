@@ -4,7 +4,7 @@ import { FaRegStar } from "react-icons/fa";
 
 const ShowCourses = () => {
     const allcourses = useLoaderData();
-    console.log(allcourses);
+    // console.log(allcourses);
     return (
        <div className='w-full p-4 md:w-auto md:p-12 md:ml-10'>
          <div className='grid lg:grid-cols-2 gap-8  '>

@@ -20,17 +20,17 @@ const Premium = () => {
                     </Pdf>
                 </div>
                 <div ref={ref}>
-                <div className='text-4xl font-bold my-4'>
-                    <h1>{name}</h1>
-                </div>
-                <div className='flex justify-center '>
-                    <img src={thum_img} className='rounded-lg shadow-lg' alt='thum-img' />
-                </div>
-                <div>
-                    <h3 className=' md:text-2xl my-4'>
-                        {dis}
-                    </h3>
-                </div>
+                    <div className='text-4xl font-bold my-4'>
+                        <h1>{name}</h1>
+                    </div>
+                    <div className='flex justify-center '>
+                        <img src={thum_img} className='rounded-lg shadow-lg' alt='thum-img' />
+                    </div>
+                    <div>
+                        <h3 className=' md:text-2xl my-4'>
+                            {dis}
+                        </h3>
+                    </div>
                 </div>
                 <Link to={`/courses/premuim/${id}`} className='btn my-4'>Get Premium Access</Link>
             </div>
