@@ -15,6 +15,7 @@ const Premium = () => {
         <div className='flex justify-center '>
             <div className='w-10/12 pt-5'>
                 <div className=' w-full flex justify-end'>
+{ /* User PDF Generator Here                     */}
                     <Pdf targetRef={ref} filename="code-example.pdf">
                         {({ toPdf }) => <button onClick={toPdf} className="flex gap-4 justify-center btn btn-outline">Generate Pdf <FaDownload /></button>}
                     </Pdf>

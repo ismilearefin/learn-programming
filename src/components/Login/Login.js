@@ -4,11 +4,13 @@ import { FaGoogle,FaGithub } from "react-icons/fa";
 import { AuthContext } from '../ContextApi/AuthProvider/AuthProvider';
 
 const Login = () => {
-    const [error,seterror] = useState('');
+const [error,seterror] = useState('');
 const {loginWithEmailPass,GooglesignInWithPopup,signinwithGithub} = useContext(AuthContext);
 const navigate = useNavigate();
 const location = useLocation();
 const from = location.state?.from?.pathname || '/'
+
+
 //Sign in existing user
 function handlelogin (e){
     e.preventDefault()
@@ -25,12 +27,12 @@ function handlelogin (e){
         console.log(user)
         form.reset();
 
-      })
-      .catch((error) => {
-        // const errorCode = error.code;
-        const errorMessage = error.message;
-        seterror(errorMessage)
-      });
+        })
+        .catch((error) => {
+            // const errorCode = error.code;
+            const errorMessage = error.message;
+            seterror(errorMessage)
+        });
 }
 
 
@@ -46,6 +48,8 @@ function handleGooglesignin(){
         seterror(errorMessage);
         });
 }
+
+
 // github signin function
 function handlegithubsignin(){
 signinwithGithub()
@@ -87,7 +91,7 @@ signinwithGithub()
                 <label className="label">
                     <p  className="label-text-alt">create a new account? <Link to='/signup' className="label-text-alt link link-hover">Sign-up</Link></p>
                 </label>
-                <p>{error}</p>
+                <p className='text-red-600'>{error}</p>
                 </div>
                 <div className="form-control mt-4">
                 <button className="btn btn-primary">Login</button>

@@ -21,25 +21,27 @@ export  const router = createBrowserRouter([
             path:'/',
             element: <Home></Home>
         },
-        {
-          path : '/courses',
-          loader:()=> fetch('https://my-assignment-server.vercel.app/allcourse'),
-          element : <Courses></Courses>,
-          children:[
+// All courses Route....
             {
-              path:'/courses',
+              path : '/courses',
               loader:()=> fetch('https://my-assignment-server.vercel.app/allcourse'),
-              element:<ShowCourses></ShowCourses>
+              element : <Courses></Courses>,
+              children:[
+                {
+                  path:'/courses',
+                  loader:()=> fetch('https://my-assignment-server.vercel.app/allcourse'),
+                  element:<ShowCourses></ShowCourses>
+                },
+                {
+                  path:'/courses/:id',
+                  loader:async ({params}) => {
+                    return   fetch(`https://my-assignment-server.vercel.app/course/${params.id}`)
+                  },
+                    element:<Premium></Premium>
+                },
+              ]
             },
-            {
-              path:'/courses/:id',
-              loader:async ({params}) => {
-                return   fetch(`https://my-assignment-server.vercel.app/course/${params.id}`)
-              },
-                element:<Premium></Premium>
-            },
-          ]
-        },
+// Private Route .......
         {
           path:'/courses/premuim/:id',
           loader:async ({params}) => {
@@ -65,6 +67,7 @@ export  const router = createBrowserRouter([
         },
       ]
     },
+// 404 route...    
     {
       path: '*',
       element: <ErrorPage></ErrorPage>

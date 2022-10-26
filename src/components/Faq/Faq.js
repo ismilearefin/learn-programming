@@ -43,7 +43,7 @@ const Faq = () => {
                 <div className="grid flex-grow p-2 lg:w-14 card bg-base-300 rounded-box place-items-center">
                     <h1 className='font-bold'>Is there an orientation for online students?</h1>
                     <p>Two weeks before your course starts you will be invited to join the SIA Online Community where our guides will introduce you to the technology and dynamics of online teaching and learning. It also gives you a chance to introduce yourself and network with fellow students.
-Should you have any questions or need help troubleshooting a piece of technology, our Online Team is only an email away and is ready to assist.</p>
+                        Should you have any questions or need help troubleshooting a piece of technology, our Online Team is only an email away and is ready to assist.</p>
                 </div>
             </div>
         </div>

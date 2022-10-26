@@ -4,17 +4,19 @@ import { FaRegStar } from "react-icons/fa";
 
 const ShowCourses = () => {
     const allcourses = useLoaderData();
-    // console.log(allcourses);
+    
     return (
-       <div className='w-full p-4 md:w-auto md:p-12 md:ml-10'>
-         <div className='grid lg:grid-cols-2 gap-8  '>
-           {
-            allcourses.map(course => <CourseCard key={course.id} course={course}></CourseCard>)
-           }
+        <div className='w-full p-4 md:w-auto md:p-12 md:ml-10'>
+            <div className='grid lg:grid-cols-2 gap-8  '>
+            {
+                allcourses.map(course => <CourseCard key={course.id} course={course}></CourseCard>)
+            }
+            </div>
         </div>
-       </div>
     );
 };
+
+// Course Card Component..........
 
 function CourseCard ({course}){
     return(

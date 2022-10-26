@@ -6,7 +6,7 @@ import { AuthContext } from '../ContextApi/AuthProvider/AuthProvider';
 const PrivateRoute = ({children}) => {
     const {user,loading} = useContext(AuthContext);
     const location = useLocation();
-
+// Show loading here
     if(loading){
         return (
             <RotatingLines

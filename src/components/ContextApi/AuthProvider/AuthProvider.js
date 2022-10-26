@@ -9,7 +9,9 @@ import { GithubAuthProvider } from "firebase/auth";
 export const AuthContext = createContext();
 
 const auth = getAuth(app);
+//Google provider
 const provider = new GoogleAuthProvider();
+//GitHub provider
 const Githubprovider = new GithubAuthProvider();
 
 const AuthProvider = ({children}) => {
@@ -52,15 +54,11 @@ function updateuserProfile(name,url){
         displayName: name,
         photoURL: url
     }).then(() => {
-        // Profile updated!
-        // ...
         }).catch((error) => {
-        // An error occurred
-        // ...
         });
     
 }
-// deleteuser
+// SignOut user 
 function signOutuser (){
     return signOut(auth);
 }

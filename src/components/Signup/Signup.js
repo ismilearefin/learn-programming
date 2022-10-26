@@ -7,9 +7,10 @@ import { useState } from 'react';
 const Signup = () => {
     const [error,seterror] = useState('');
     const navigate = useNavigate();
-    
     const {signupWithEmailPass,GooglesignInWithPopup,updateuserProfile,signinwithGithub} = useContext(AuthContext);
-// sign in with email & password    
+
+
+    // sign in with email & password    
     function handlesubmit(e){
         e.preventDefault();
         const form = e.target;
@@ -22,7 +23,6 @@ const Signup = () => {
         .then((userCredential) => {
             // Signed in 
             const user = userCredential.user;
-
             console.log(user);
             form.reset();
             updateuserProfile(name,url);
@@ -32,32 +32,35 @@ const Signup = () => {
             seterror(error.message);
         });
     }
+
+
+
 // google sign in function
     function handleGooglesignin(){
         GooglesignInWithPopup()
         .then((result) => {
             const user = result.user;
-            console.log(user)
-            
+            console.log(user);
             }).catch((error) => {
             const errorMessage = error.message;
             seterror(errorMessage);
-            
             });
     }
+
+
+
 // github signin function
 function handlegithubsignin(){
     signinwithGithub()
     .then((result) => {
         // The signed-in user info.
         const user = result.user;
-        // ...
-        console.log(user)
-        seterror('')
+        console.log(user);
+        seterror('');
       }).catch((error) => {
         // Handle Errors here.
         const errorMessage = error.message;
-        seterror(errorMessage)
+        seterror(errorMessage);
       });
 }
 
