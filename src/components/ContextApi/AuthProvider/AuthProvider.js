@@ -1,14 +1,17 @@
-import React, { createContext,  } from 'react';
-import { createUserWithEmailAndPassword, getAuth,  signInWithEmailAndPassword } from "firebase/auth";
+import React, { createContext, useEffect, useState,  } from 'react';
+import { createUserWithEmailAndPassword, getAuth,  onAuthStateChanged,  signInWithEmailAndPassword, signInWithPopup, updateProfile } from "firebase/auth";
 import app from '../../../fairbase/firebase.config';
-// import { current } from 'daisyui/src/colors';
+import { GoogleAuthProvider } from "firebase/auth";
 
 
 export const AuthContext = createContext();
 
 const auth = getAuth(app);
+const provider = new GoogleAuthProvider();
+
 const AuthProvider = ({children}) => {
-    // const [user, setuser] = useState(null)
+    const [user, setuser] = useState(null)
+    const [loading, setloading] = useState(true);
 
 
     // signUp with email & password
@@ -18,18 +21,48 @@ function signupWithEmailPass (email,password){
 
     //Login with email & password
 function loginWithEmailPass (email,password){
-    return signInWithEmailAndPassword(auth, email, password)
+    return signInWithEmailAndPassword(auth, email, password);
 }
 
-    //Authentication state observer
-// useEffect(()=>{
-//     const unsubscribe = onAuthStateChanged(auth, currentuser => {
-//         setuser(currentuser);
-//     });
-//     return () => unsubscribe();
-// }, [])
+    //SignIN with Google
+function GooglesignInWithPopup(){
+    return signInWithPopup(auth, provider);
+}
 
-    const value = {signupWithEmailPass, loginWithEmailPass };
+    // Authentication state observer
+useEffect(()=>{
+    const unsubscribe = onAuthStateChanged(auth, currentuser => {
+        setuser(currentuser);
+        setloading(false);
+    });
+    return () => unsubscribe();
+}, [])
+
+//update Profile
+function updateuserProfile(name,url){
+    updateProfile(auth.currentUser,{
+        displayName: name,
+        photoURL: url
+    }).then(() => {
+        // Profile updated!
+        // ...
+        }).catch((error) => {
+        // An error occurred
+        // ...
+        });
+    
+}
+
+
+    const value = {
+        user,
+        loading,
+        signupWithEmailPass, 
+        loginWithEmailPass,
+        GooglesignInWithPopup,
+        updateuserProfile,
+    };
+
     return (
         <AuthContext.Provider value={value}>
             {children}

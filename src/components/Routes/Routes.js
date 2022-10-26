@@ -9,6 +9,7 @@ import Premium from "../Courses/Premium/Premium";
 import Signup from "../Signup/Signup";
 import ShowCourses from "../Courses/ShowCourses/ShowCourses";
 import Privatepage from "../Courses/Privatepage/Privatepage";
+import PrivateRoute from "../PrivateRoute/PrivateRoute";
 
 export  const router = createBrowserRouter([
     {
@@ -41,7 +42,7 @@ export  const router = createBrowserRouter([
               loader:async ({params}) => {
                 return   fetch(`https://my-assignment-server.vercel.app/course/${params.id}`)
               },
-              element:<Privatepage></Privatepage>
+              element:<PrivateRoute><Privatepage></Privatepage></PrivateRoute>
             }
           ]
         },

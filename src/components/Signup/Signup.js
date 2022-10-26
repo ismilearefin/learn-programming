@@ -4,25 +4,41 @@ import { FaGoogle,FaGithub } from "react-icons/fa";
 import { AuthContext } from '../ContextApi/AuthProvider/AuthProvider';
 
 const Signup = () => {
-    const {signupWithEmailPass} = useContext(AuthContext)
-    
+    const {signupWithEmailPass,GooglesignInWithPopup,updateuserProfile} = useContext(AuthContext);
+// sign in with email & password    
     function handlesubmit(e){
         e.preventDefault();
         const form = e.target;
+        const name = form.name.value;
+        const url = form.url.value;
         const email = form.email.value;
         const password = form.password.value;
         signupWithEmailPass(email,password)
         .then((userCredential) => {
             // Signed in 
             const user = userCredential.user;
+
             console.log(user);
+            form.reset();
+            updateuserProfile(name,url);
+
             // ...
-          })
-          .catch((error) => {
-            // const errorCode = error.code;
-            // const errorMessage = error.message;
-            // ..
-          });
+        })
+        .catch((error) => {
+        });
+    }
+// google sign in function
+    function handleGooglesignin(){
+        GooglesignInWithPopup()
+        .then((result) => {
+            const user = result.user;
+            console.log(user)
+            
+            }).catch((error) => {
+            const errorMessage = error.message;
+            console.log(errorMessage)
+            
+            });
     }
 
 
@@ -65,10 +81,10 @@ const Signup = () => {
                 </div>
                 <div className="form-control mt-4">
                 <button className="btn btn-primary">Sign Up</button>
-                <div className='flex justify-center gap-3 mt-3'>
-                <FaGoogle className='text-2xl'></FaGoogle>
-                <FaGithub className='text-2xl'></FaGithub>
                 </div>
+                <div className='flex justify-center gap-3 mt-3'>
+                <FaGoogle className='text-2xl' onClick={handleGooglesignin}></FaGoogle>
+                <FaGithub className='text-2xl'></FaGithub>
                 </div>
             </form>
             </div>
