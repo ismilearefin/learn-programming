@@ -2,8 +2,10 @@ import React, { useContext } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { FaGoogle,FaGithub } from "react-icons/fa";
 import { AuthContext } from '../ContextApi/AuthProvider/AuthProvider';
+import { useState } from 'react';
 
 const Signup = () => {
+    const [error,seterror] = useState('');
     const navigate = useNavigate();
     
     const {signupWithEmailPass,GooglesignInWithPopup,updateuserProfile,signinwithGithub} = useContext(AuthContext);
@@ -15,6 +17,7 @@ const Signup = () => {
         const url = form.url.value;
         const email = form.email.value;
         const password = form.password.value;
+
         signupWithEmailPass(email,password)
         .then((userCredential) => {
             // Signed in 
@@ -24,10 +27,9 @@ const Signup = () => {
             form.reset();
             updateuserProfile(name,url);
             navigate('/');
-
-            // ...
         })
         .catch((error) => {
+            seterror(error.message);
         });
     }
 // google sign in function
@@ -39,7 +41,7 @@ const Signup = () => {
             
             }).catch((error) => {
             const errorMessage = error.message;
-            console.log(errorMessage)
+            seterror(errorMessage);
             
             });
     }
@@ -51,10 +53,11 @@ function handlegithubsignin(){
         const user = result.user;
         // ...
         console.log(user)
+        seterror('')
       }).catch((error) => {
         // Handle Errors here.
         const errorMessage = error.message;
-        console.log(errorMessage)
+        seterror(errorMessage)
       });
 }
 
@@ -94,6 +97,7 @@ function handlegithubsignin(){
                 <label className="label">
                     <p  className="label-text-alt">Already have an account? <Link to='/login' className="label-text-alt link link-hover">Login</Link></p>
                 </label>
+                    <p className='text-red-600 label-text-alt'>{error}</p>
                 </div>
                 <div className="form-control mt-4">
                 <button className="btn btn-primary">Sign Up</button>

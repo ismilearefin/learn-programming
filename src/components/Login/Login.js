@@ -1,9 +1,10 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { FaGoogle,FaGithub } from "react-icons/fa";
 import { AuthContext } from '../ContextApi/AuthProvider/AuthProvider';
 
 const Login = () => {
+    const [error,seterror] = useState('');
 const {loginWithEmailPass,GooglesignInWithPopup,signinwithGithub} = useContext(AuthContext);
 const navigate = useNavigate();
 const location = useLocation();
@@ -19,14 +20,16 @@ function handlelogin (e){
         // Signed in 
         const user = userCredential.user;
         // ...
+        seterror('');
         navigate(from, {replace : true});
         console.log(user)
         form.reset();
+
       })
       .catch((error) => {
         // const errorCode = error.code;
         const errorMessage = error.message;
-        console.log(errorMessage)
+        seterror(errorMessage)
       });
 }
 
@@ -37,11 +40,10 @@ function handleGooglesignin(){
     .then((result) => {
         const user = result.user;
         console.log(user)
-        
+        seterror('');
         }).catch((error) => {
         const errorMessage = error.message;
-        console.log(errorMessage)
-        
+        seterror(errorMessage);
         });
 }
 // github signin function
@@ -52,10 +54,11 @@ signinwithGithub()
     const user = result.user;
     // ...
     console.log(user)
+    seterror('');
   }).catch((error) => {
     // Handle Errors here.
     const errorMessage = error.message;
-    console.log(errorMessage)
+    seterror(errorMessage);
   });
 }
 
@@ -84,6 +87,7 @@ signinwithGithub()
                 <label className="label">
                     <p  className="label-text-alt">create a new account? <Link to='/signup' className="label-text-alt link link-hover">Sign-up</Link></p>
                 </label>
+                <p>{error}</p>
                 </div>
                 <div className="form-control mt-4">
                 <button className="btn btn-primary">Login</button>
