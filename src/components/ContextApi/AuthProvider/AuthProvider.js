@@ -1,5 +1,5 @@
 import React, { createContext, useEffect, useState,  } from 'react';
-import { createUserWithEmailAndPassword, getAuth,  onAuthStateChanged,  signInWithEmailAndPassword, signInWithPopup, signOut, updateProfile } from "firebase/auth";
+import { createUserWithEmailAndPassword, getAuth,  onAuthStateChanged,  sendPasswordResetEmail,  signInWithEmailAndPassword, signInWithPopup, signOut, updateProfile } from "firebase/auth";
 import app from '../../../fairbase/firebase.config';
 import { GoogleAuthProvider } from "firebase/auth";
 import { GithubAuthProvider } from "firebase/auth";
@@ -64,6 +64,11 @@ function signOutuser (){
 }
 
 
+//reset password
+function resetpass(email){
+  return  sendPasswordResetEmail(auth, email);
+}
+
     const value = {
         user,
         loading,
@@ -72,7 +77,8 @@ function signOutuser (){
         GooglesignInWithPopup,
         signinwithGithub,
         updateuserProfile,
-        signOutuser
+        signOutuser,
+        resetpass
     };
 
     return (

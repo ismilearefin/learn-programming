@@ -2,13 +2,18 @@ import React, { useContext, useState } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { FaGoogle,FaGithub } from "react-icons/fa";
 import { AuthContext } from '../ContextApi/AuthProvider/AuthProvider';
+import { ToastContainer, toast} from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+// import { BallTriangle } from 'react-loader-spinner';
+
 
 const Login = () => {
 const [error,seterror] = useState('');
-const {loginWithEmailPass,GooglesignInWithPopup,signinwithGithub} = useContext(AuthContext);
+const {loginWithEmailPass,GooglesignInWithPopup,signinwithGithub,resetpass} = useContext(AuthContext);
 const navigate = useNavigate();
 const location = useLocation();
 const from = location.state?.from?.pathname || '/'
+// const notify = () => toast("Wow so easy!");
 
 
 //Sign in existing user
@@ -42,6 +47,7 @@ function handleGooglesignin(){
     .then((result) => {
         const user = result.user;
         console.log(user)
+        navigate(from, {replace : true});
         seterror('');
         }).catch((error) => {
         const errorMessage = error.message;
@@ -58,12 +64,40 @@ signinwithGithub()
     const user = result.user;
     // ...
     console.log(user)
+    navigate(from, {replace : true});
     seterror('');
   }).catch((error) => {
     // Handle Errors here.
     const errorMessage = error.message;
     seterror(errorMessage);
   });
+}
+
+
+function SubmitresetPass(e){
+    const form = e.target;
+    const email = form.value
+    console.log(email)
+    resetpass(email)
+    .then(() => {
+        // Password reset email sent!
+        toast.info('Please Check Your Email',{
+            position: "top-center",
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "light",
+        });
+        
+        })
+        .catch((error) => {
+            const errorMessage = error.message;
+            seterror(errorMessage);
+        });
+
 }
 
 
@@ -90,6 +124,19 @@ signinwithGithub()
                 <input type="password" name='password' placeholder="password" className="input input-bordered" />
                 <label className="label">
                     <p  className="label-text-alt">create a new account? <Link to='/signup' className="label-text-alt link link-hover">Sign-up</Link></p>
+{/* toastify for email  */}
+                    <ToastContainer
+                        position="top-center"
+                        autoClose={5000}
+                        hideProgressBar={false}
+                        newestOnTop={false}
+                        closeOnClick
+                        rtl={false}
+                        pauseOnFocusLoss
+                        draggable
+                        pauseOnHover
+                        theme="light"
+                    />
                 </label>
                 <p className='text-red-600'>{error}</p>
                 </div>
@@ -100,8 +147,17 @@ signinwithGithub()
                 <FaGithub className='text-2xl' onClick={handlegithubsignin}></FaGithub>
                 </div>
                 </div>
-                
             </form>
+{/* Modal for reset password                     */}
+                    <label htmlFor="my-modal-4" className="label-text-alt link link-hover modal-button pb-2">Reset Password</label>
+                    <input type="checkbox" id="my-modal-4" className="modal-toggle" />
+                    <label  htmlFor="my-modal-4" className="modal cursor-pointer">
+                    <label className="modal-box relative" for="">
+                        <h3 className="text-lg font-bold">Enter Your Email Here!</h3>
+                        <input onBlur={SubmitresetPass} type="email" name='email' placeholder="email" className="input input-bordered" />
+                    </label>
+                    </label>
+{/* ......................                           */}
             </div>
         </div>
         </div>
