@@ -6,7 +6,7 @@ import { AuthContext } from '../ContextApi/AuthProvider/AuthProvider';
 const Navbar = () => {
 const [active,setactive] = useState(true);
 const {user,signOutuser} = useContext(AuthContext);
-console.log(user);
+// console.log(user);
 
 
 //signOut
