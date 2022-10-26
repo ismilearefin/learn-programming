@@ -1,9 +1,11 @@
 import React, { useContext } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { FaGoogle,FaGithub } from "react-icons/fa";
 import { AuthContext } from '../ContextApi/AuthProvider/AuthProvider';
 
 const Signup = () => {
+    const navigate = useNavigate();
+    
     const {signupWithEmailPass,GooglesignInWithPopup,updateuserProfile} = useContext(AuthContext);
 // sign in with email & password    
     function handlesubmit(e){
@@ -21,6 +23,7 @@ const Signup = () => {
             console.log(user);
             form.reset();
             updateuserProfile(name,url);
+            navigate('/');
 
             // ...
         })

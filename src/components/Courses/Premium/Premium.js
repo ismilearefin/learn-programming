@@ -27,7 +27,7 @@ const Premium = () => {
                     <img src={thum_img} className='rounded-lg shadow-lg' alt='thum-img' />
                 </div>
                 <div>
-                    <h3 className='text-2xl my-4'>
+                    <h3 className=' md:text-2xl my-4'>
                         {dis}
                     </h3>
                 </div>

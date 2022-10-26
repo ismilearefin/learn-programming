@@ -37,14 +37,21 @@ export  const router = createBrowserRouter([
               },
                 element:<Premium></Premium>
             },
-            {
-              path:'/courses/premuim/:id',
-              loader:async ({params}) => {
-                return   fetch(`https://my-assignment-server.vercel.app/course/${params.id}`)
-              },
-              element:<PrivateRoute><Privatepage></Privatepage></PrivateRoute>
-            }
+            // {
+            //   path:'/courses/premuim/:id',
+            //   loader:async ({params}) => {
+            //     return   fetch(`https://my-assignment-server.vercel.app/course/${params.id}`)
+            //   },
+            //   element:<PrivateRoute><Privatepage></Privatepage></PrivateRoute>
+            // }
           ]
+        },
+        {
+          path:'/courses/premuim/:id',
+          loader:async ({params}) => {
+            return   fetch(`https://my-assignment-server.vercel.app/course/${params.id}`)
+          },
+          element:<PrivateRoute><Privatepage></Privatepage></PrivateRoute>
         },
         {
           path: '/faq',

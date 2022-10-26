@@ -1,5 +1,5 @@
 import React, { createContext, useEffect, useState,  } from 'react';
-import { createUserWithEmailAndPassword, getAuth,  onAuthStateChanged,  signInWithEmailAndPassword, signInWithPopup, updateProfile } from "firebase/auth";
+import { createUserWithEmailAndPassword, getAuth,  onAuthStateChanged,  signInWithEmailAndPassword, signInWithPopup, signOut, updateProfile } from "firebase/auth";
 import app from '../../../fairbase/firebase.config';
 import { GoogleAuthProvider } from "firebase/auth";
 
@@ -52,6 +52,10 @@ function updateuserProfile(name,url){
         });
     
 }
+// deleteuser
+function signOutuser (){
+    return signOut(auth);
+}
 
 
     const value = {
@@ -61,6 +65,7 @@ function updateuserProfile(name,url){
         loginWithEmailPass,
         GooglesignInWithPopup,
         updateuserProfile,
+        signOutuser
     };
 
     return (

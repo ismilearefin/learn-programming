@@ -1,11 +1,13 @@
 import React, { useContext } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { FaGoogle,FaGithub } from "react-icons/fa";
 import { AuthContext } from '../ContextApi/AuthProvider/AuthProvider';
 
 const Login = () => {
 const {loginWithEmailPass} = useContext(AuthContext);
-
+const navigate = useNavigate();
+const location = useLocation();
+const from = location.state?.from?.pathname || '/'
 //Sign in existing user
 function handlelogin (e){
     e.preventDefault()
@@ -17,6 +19,7 @@ function handlelogin (e){
         // Signed in 
         const user = userCredential.user;
         // ...
+        navigate(from, {replace : true});
         console.log(user)
         form.reset();
       })
