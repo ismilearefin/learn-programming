@@ -6,7 +6,7 @@ import { AuthContext } from '../ContextApi/AuthProvider/AuthProvider';
 const Signup = () => {
     const navigate = useNavigate();
     
-    const {signupWithEmailPass,GooglesignInWithPopup,updateuserProfile} = useContext(AuthContext);
+    const {signupWithEmailPass,GooglesignInWithPopup,updateuserProfile,signinwithGithub} = useContext(AuthContext);
 // sign in with email & password    
     function handlesubmit(e){
         e.preventDefault();
@@ -43,7 +43,20 @@ const Signup = () => {
             
             });
     }
-
+// github signin function
+function handlegithubsignin(){
+    signinwithGithub()
+    .then((result) => {
+        // The signed-in user info.
+        const user = result.user;
+        // ...
+        console.log(user)
+      }).catch((error) => {
+        // Handle Errors here.
+        const errorMessage = error.message;
+        console.log(errorMessage)
+      });
+}
 
 
     return (
@@ -87,7 +100,7 @@ const Signup = () => {
                 </div>
                 <div className='flex justify-center gap-3 mt-3'>
                 <FaGoogle className='text-2xl' onClick={handleGooglesignin}></FaGoogle>
-                <FaGithub className='text-2xl'></FaGithub>
+                <FaGithub className='text-2xl' onClick={handlegithubsignin}></FaGithub>
                 </div>
             </form>
             </div>

@@ -4,7 +4,7 @@ import { FaGoogle,FaGithub } from "react-icons/fa";
 import { AuthContext } from '../ContextApi/AuthProvider/AuthProvider';
 
 const Login = () => {
-const {loginWithEmailPass} = useContext(AuthContext);
+const {loginWithEmailPass,GooglesignInWithPopup,signinwithGithub} = useContext(AuthContext);
 const navigate = useNavigate();
 const location = useLocation();
 const from = location.state?.from?.pathname || '/'
@@ -30,6 +30,34 @@ function handlelogin (e){
       });
 }
 
+
+// google sign in function
+function handleGooglesignin(){
+    GooglesignInWithPopup()
+    .then((result) => {
+        const user = result.user;
+        console.log(user)
+        
+        }).catch((error) => {
+        const errorMessage = error.message;
+        console.log(errorMessage)
+        
+        });
+}
+// github signin function
+function handlegithubsignin(){
+signinwithGithub()
+.then((result) => {
+    // The signed-in user info.
+    const user = result.user;
+    // ...
+    console.log(user)
+  }).catch((error) => {
+    // Handle Errors here.
+    const errorMessage = error.message;
+    console.log(errorMessage)
+  });
+}
 
 
 
@@ -60,8 +88,8 @@ function handlelogin (e){
                 <div className="form-control mt-4">
                 <button className="btn btn-primary">Login</button>
                 <div className='flex justify-center gap-3 mt-3'>
-                <FaGoogle className='text-2xl'></FaGoogle>
-                <FaGithub className='text-2xl'></FaGithub>
+                <FaGoogle className='text-2xl' onClick={handleGooglesignin}></FaGoogle>
+                <FaGithub className='text-2xl' onClick={handlegithubsignin}></FaGithub>
                 </div>
                 </div>
                 

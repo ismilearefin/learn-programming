@@ -2,12 +2,15 @@ import React, { createContext, useEffect, useState,  } from 'react';
 import { createUserWithEmailAndPassword, getAuth,  onAuthStateChanged,  signInWithEmailAndPassword, signInWithPopup, signOut, updateProfile } from "firebase/auth";
 import app from '../../../fairbase/firebase.config';
 import { GoogleAuthProvider } from "firebase/auth";
+import { GithubAuthProvider } from "firebase/auth";
+
 
 
 export const AuthContext = createContext();
 
 const auth = getAuth(app);
 const provider = new GoogleAuthProvider();
+const Githubprovider = new GithubAuthProvider();
 
 const AuthProvider = ({children}) => {
     const [user, setuser] = useState(null)
@@ -28,6 +31,11 @@ function loginWithEmailPass (email,password){
 function GooglesignInWithPopup(){
     return signInWithPopup(auth, provider);
 }
+    //signup with Github
+    function signinwithGithub(){
+        return signInWithPopup(auth, Githubprovider);
+    }
+
 
     // Authentication state observer
 useEffect(()=>{
@@ -64,6 +72,7 @@ function signOutuser (){
         signupWithEmailPass, 
         loginWithEmailPass,
         GooglesignInWithPopup,
+        signinwithGithub,
         updateuserProfile,
         signOutuser
     };
