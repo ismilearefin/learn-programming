@@ -73,11 +73,14 @@ function signouthandle(){
     </label>
 {/* Hover effetc for user name           */}
         {isHovering && <h2 className='font-bold'>{user ? user.displayName : 'No user'}</h2>}
-    <label onMouseOver={handleMouseOver} onMouseOut={handleMouseOut}  tabIndex={0} className="btn btn-ghost btn-circle avatar">
+    {user ? <label onMouseOver={handleMouseOver} onMouseOut={handleMouseOut}  tabIndex={0} className="btn btn-ghost btn-circle avatar">
         <div className="w-10 rounded-full">
-          {user ? <img src={user.photoURL} alt='user pic' /> : <img src="https://images.unsplash.com/photo-1599508704512-2f19efd1e35f?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=435&q=80" alt='user pic' />}
+           <img src={user.photoURL} alt='user pic' /> 
         </div>
     </label>
+    :
+    <></> 
+    }
     {!user ?  <Link className="btn btn-success" to='/login'>login</Link> : <button onClick={signouthandle} className="btn btn-error">Sign Out</button>}
   </div>
 </div>
