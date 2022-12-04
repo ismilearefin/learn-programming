@@ -81,7 +81,7 @@ function signouthandle(){
     :
     <></> 
     }
-    {!user ?  <Link className="btn btn-success" to='/login'>login</Link> : <button onClick={signouthandle} className="btn btn-error">Sign Out</button>}
+    {!user ?  <Link className="btn btn-success" to='/login'>login</Link> : <button onClick={signouthandle} className="btn btn-error">Sign-Out</button>}
   </div>
 </div>
     );
