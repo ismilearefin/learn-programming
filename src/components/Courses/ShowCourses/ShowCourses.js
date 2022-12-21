@@ -21,7 +21,7 @@ const ShowCourses = () => {
 function CourseCard ({course}){
     return(
         <div  className="card w-64 lg:w-96 bg-base-100 shadow-xl">
-        <><img src={course.card_img} alt="Shoes" /></>
+        <><img src={course.card_img} alt="Shoes" className='hover:scale-110 transition duration-300 ease-in-out'/></>
         <div className="card-body">
             <h2 className="font-bold text-lg lg:card-title">
             {course.title}
